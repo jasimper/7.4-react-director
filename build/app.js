@@ -20565,9 +20565,11 @@ var App = React.createClass({displayName: "App",
   },
 
   render: function() {
-    console.log(this.state.palettes);
     return (
       React.createElement("div", null, 
+        React.createElement("header", null, 
+          React.createElement("a", {href: "/"}, React.createElement("h1", null, "Hex Mix"))
+        ), 
       React.createElement(Palettes, {palettes: this.state.palettes})
       )
     )
@@ -20587,12 +20589,26 @@ var App = React.createClass({displayName: "App",
   },
 
   _initRouter: function() {
-      this.router = Router({
-        '/'             : showAll,
-        '/palettes/:id' : showPalette
+      var self = this;
+      self.router = Router({
+        '/'             : self._showAll,
+        '/palettes/:id' : self._showPalette
       });
-      this.router.configure({ html5history: true });
-      this.router.init();
+      self.router.configure({ html5history: true });
+      self.router.init();
+  },
+
+  _showPalette: function() {
+
+  },
+
+  _showAll: function() {
+    console.log('show all activated')
+    return (
+      React.createElement("div", null, 
+      React.createElement(Palettes, {palettes: this.state.palettes})
+      )
+    )
   }
 
 });

@@ -17,19 +17,10 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      <Palettes palettes={this.state.palettes} />
-      </div>
-    )
-  },
-
-  var showPalette = function() {
-    
-  },
-
-  var showAll = function() {
-    return (
-      <div>
-      <Palettes palettes={this.state.palettes} />
+        <header>
+          <a href='/'><h1>Hex Mix</h1></a>
+        </header>
+        <Palettes palettes={this.state.palettes} />
       </div>
     )
   },
@@ -48,12 +39,25 @@ var App = React.createClass({
   },
 
   _initRouter: function() {
-      this.router = Router({
-        '/'             : showAll,
-        '/palettes/:id' : showPalette
+      var self = this;
+      self.router = Router({
+        '/'             : self._showAll,
+        '/palettes/:id' : self._showPalette
       });
-      this.router.configure({ html5history: true });
-      this.router.init();
+      self.router.configure({ html5history: true });
+      self.router.init();
+  },
+
+  _showPalette: function() {
+
+  },
+
+  _showAll: function() {
+    return (
+      <div>
+      <Palettes palettes={this.state.palettes} />
+      </div>
+    )
   }
 
 });
